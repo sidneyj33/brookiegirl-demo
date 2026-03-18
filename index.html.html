@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrookieGirl — Luxury Body Care</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #fdf8f3;
+    --blush: #e8c5c0;
+    --rose: #c9736e;
+    --dusty: #d4a5a0;
+    --gold: #c4a46b;
+    --gold-light: #e8d5b0;
+    --brown: #5c3d35;
+    --brown-light: #8b6058;
+    --warm-white: #fefcf9;
+    --text-dark: #3a2a27;
+    --text-mid: #7a5c57;
+    --text-light: #b09590;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(253, 248, 243, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gold-light);
+    padding: 0 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--brown);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--rose); }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+    font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 500;
+  }
+  .nav-links a { color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--rose); }
+  .nav-right { display: flex; gap: 1rem; align-items: center; }
+  .nav-cta {
+    background: var(--brown);
+    color: var(--cream);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--rose); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding-top: 68px;
+    gap: 0;
+  }
+  .hero-content {
+    padding: 6rem 5vw 6rem 8vw;
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .hero-tag {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .hero-h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--brown);
+  }
+  .hero-h1 em { font-style: italic; color: var(--rose); }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--text-mid);
+    max-width: 380px;
+    line-height: 1.8;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  .btn-primary {
+    background: var(--brown);
+    color: var(--cream);
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+    border: 2px solid var(--brown);
+  }
+  .btn-primary:hover { background: var(--rose); border-color: var(--rose); }
+  .btn-outline {
+    background: transparent;
+    color: var(--brown);
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    border: 2px solid var(--blush);
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--rose); color: var(--rose); }
+  .hero-image {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .hero-image::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--cream) 0%, transparent 30%);
+  }
+  .hero-badge {
+    position: absolute;
+    bottom: 10%;
+    left: -30px;
+    background: var(--warm-white);
+    border: 1px solid var(--gold-light);
+    border-radius: 16px;
+    padding: 18px 24px;
+    font-size: 0.8rem;
+    z-index: 2;
+    box-shadow: 0 8px 32px rgba(90,60,50,0.12);
+  }
+  .hero-badge strong { display: block; font-family: var(--serif); font-size: 1.3rem; color: var(--brown); }
+  .hero-badge span { color: var(--text-mid); font-size: 0.75rem; letter-spacing: 0.05em; }
+
+  /* ─── TRUST BAR ─── */
+  .trust-bar {
+    background: var(--brown);
+    color: var(--cream);
+    padding: 18px 5vw;
+    display: flex; justify-content: center; gap: 4rem;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .trust-bar span { display: flex; align-items: center; gap: 8px; }
+  .trust-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 7rem 5vw; }
+  .section-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 400;
+    color: var(--brown);
+    line-height: 1.2;
+  }
+  .section-title em { font-style: italic; color: var(--rose); }
+
+  /* ─── BEST SELLERS ─── */
+  .products { background: var(--warm-white); }
+  .products-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .view-all {
+    font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--rose); text-decoration: none; font-weight: 500;
+    border-bottom: 1px solid var(--blush); padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .product-card {
+    background: var(--cream);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--gold-light);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(90,60,50,0.12); }
+  .product-img {
+    width: 100%; aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+  }
+  .product-info { padding: 1.25rem 1.25rem 1.5rem; }
+  .product-type {
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 4px;
+  }
+  .product-name {
+    font-family: var(--serif); font-size: 1.15rem; font-weight: 500;
+    color: var(--brown); margin-bottom: 4px;
+  }
+  .product-desc { font-size: 0.82rem; color: var(--text-mid); margin-bottom: 1rem; line-height: 1.5; }
+  .product-footer { display: flex; justify-content: space-between; align-items: center; }
+  .product-price { font-family: var(--serif); font-size: 1.1rem; color: var(--brown); font-weight: 500; }
+  .add-btn {
+    background: var(--brown);
+    color: var(--cream);
+    border: none;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+    font-family: var(--sans);
+  }
+  .add-btn:hover { background: var(--rose); }
+
+  /* ─── WHY US ─── */
+  .why-us { background: var(--cream); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+  .why-card {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border: 1px solid var(--gold-light);
+    border-radius: 20px;
+    background: var(--warm-white);
+    transition: border-color 0.2s;
+  }
+  .why-card:hover { border-color: var(--blush); }
+  .why-icon {
+    width: 52px; height: 52px;
+    background: var(--gold-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.2rem;
+    font-size: 1.3rem;
+  }
+  .why-title {
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 500;
+    color: var(--brown); margin-bottom: 0.5rem;
+  }
+  .why-desc { font-size: 0.85rem; color: var(--text-mid); line-height: 1.7; }
+
+  /* ─── SCENTS ─── */
+  .scents { background: var(--warm-white); }
+  .scent-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .scent-card {
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .scent-card:hover { transform: translateY(-4px); }
+  .scent-card:nth-child(1) { background: #fde8e3; }
+  .scent-card:nth-child(2) { background: #d4f0e8; }
+  .scent-card:nth-child(3) { background: #e3eef8; }
+  .scent-card:nth-child(4) { background: #f5e8d0; }
+  .scent-emoji { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+  .scent-name {
+    font-family: var(--serif); font-size: 1.2rem; font-weight: 500;
+    color: var(--brown); margin-bottom: 0.5rem;
+  }
+  .scent-note { font-size: 0.82rem; color: var(--text-mid); }
+  .scent-tag {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--brown); border: 1px solid rgba(92,61,53,0.25);
+    padding: 4px 14px; border-radius: 50px;
+    font-weight: 500;
+  }
+
+  /* ─── BRAND STORY ─── */
+  .story {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+  }
+  .story-image { position: relative; height: 620px; overflow: hidden; }
+  .story-image img { width: 100%; height: 100%; object-fit: cover; }
+  .story-image::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to bottom, transparent 60%, rgba(253,248,243,0.4));
+  }
+  .story-content {
+    padding: 5rem 8vw 5rem 5vw;
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .story-quote {
+    font-family: var(--serif); font-size: clamp(1.7rem, 2.5vw, 2.3rem);
+    font-weight: 400; color: var(--brown); line-height: 1.3;
+    font-style: italic;
+  }
+  .story-text { font-size: 0.95rem; color: var(--text-mid); line-height: 1.9; }
+  .story-sig {
+    font-family: var(--serif); font-size: 1.3rem; color: var(--rose);
+    font-style: italic; margin-top: 0.5rem;
+  }
+  .story-bar {
+    width: 60px; height: 2px;
+    background: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  /* ─── BUNDLE ─── */
+  .bundle {
+    background: var(--brown);
+    color: var(--cream);
+    text-align: center;
+    padding: 7rem 5vw;
+  }
+  .bundle .section-tag { color: var(--gold); }
+  .bundle .section-title { color: var(--cream); }
+  .bundle-items {
+    display: flex; justify-content: center; gap: 1.5rem;
+    flex-wrap: wrap; margin: 2.5rem 0;
+  }
+  .bundle-item {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(196,164,107,0.3);
+    border-radius: 16px;
+    padding: 1.2rem 2rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+  }
+  .bundle-price {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+  .bundle-save {
+    font-size: 0.82rem;
+    color: var(--blush);
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+  }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--warm-white);
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    transition: opacity 0.2s;
+  }
+  .btn-gold:hover { opacity: 0.85; }
+
+  /* ─── REVIEWS ─── */
+  .reviews { background: var(--warm-white); }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .review-card {
+    background: var(--cream);
+    border: 1px solid var(--gold-light);
+    border-radius: 20px;
+    padding: 2rem;
+  }
+  .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 1rem; }
+  .review-text {
+    font-family: var(--serif); font-size: 1.05rem;
+    color: var(--brown); line-height: 1.7;
+    font-style: italic; margin-bottom: 1.2rem;
+  }
+  .reviewer { display: flex; align-items: center; gap: 10px; }
+  .reviewer-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--blush);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 600; color: var(--brown);
+  }
+  .reviewer-name { font-size: 0.85rem; font-weight: 500; color: var(--brown); }
+  .reviewer-date { font-size: 0.75rem; color: var(--text-light); }
+
+  /* ─── GALLERY ─── */
+  .gallery { background: var(--cream); padding: 7rem 5vw 5rem; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 240px 240px;
+    gap: 12px;
+    margin-top: 3rem;
+  }
+  .gallery-item { border-radius: 16px; overflow: hidden; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; display: block; }
+  .gallery-item:hover img { transform: scale(1.05); }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gallery-item:nth-child(2) { grid-column: span 2; }
+  .gallery-item:nth-child(3) { grid-column: span 2; }
+  .gallery-item:nth-child(4) { grid-column: span 1; }
+  .gallery-item:nth-child(5) { grid-column: span 2; }
+  .gallery-item:nth-child(6) { grid-column: span 1; }
+
+  /* ─── EMAIL ─── */
+  .email-signup {
+    background: linear-gradient(135deg, #f5ece6 0%, #ede0d4 100%);
+    text-align: center;
+    padding: 7rem 5vw;
+    border-top: 1px solid var(--gold-light);
+  }
+  .email-form {
+    display: flex; justify-content: center; gap: 12px;
+    margin-top: 2rem; flex-wrap: wrap;
+  }
+  .email-input {
+    padding: 14px 24px;
+    border: 1.5px solid var(--blush);
+    border-radius: 50px;
+    background: var(--warm-white);
+    font-size: 0.9rem;
+    width: 300px;
+    color: var(--text-dark);
+    font-family: var(--sans);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .email-input::placeholder { color: var(--text-light); }
+  .email-input:focus { border-color: var(--rose); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--brown);
+    color: rgba(253,248,243,0.7);
+    padding: 4rem 5vw 2rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-logo {
+    font-family: var(--serif); font-size: 1.6rem; color: var(--cream);
+    margin-bottom: 1rem; display: block;
+  }
+  .footer-logo span { color: var(--dusty); }
+  .footer-tagline { font-size: 0.85rem; line-height: 1.8; max-width: 240px; }
+  .footer-col h4 {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 1.2rem;
+    font-family: var(--sans);
+  }
+  .footer-col a {
+    display: block; color: rgba(253,248,243,0.65);
+    text-decoration: none; font-size: 0.88rem;
+    margin-bottom: 0.6rem; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--blush); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between;
+    font-size: 0.78rem; flex-wrap: wrap; gap: 0.5rem;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .scent-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-image { height: 50vh; }
+    .hero-content { padding: 4rem 5vw 3rem; }
+    .story { grid-template-columns: 1fr; }
+    .story-image { height: 380px; }
+    .story-content { padding: 3rem 5vw; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; }
+    .gallery-item { grid-column: span 1 !important; grid-row: span 1 !important; height: 180px; }
+    .nav-links { display: none; }
+    .trust-bar { gap: 1.5rem; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 480px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .scent-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Brookie<span>Girl</span></a>
+  <ul class="nav-links">
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#scents">Scents</a></li>
+    <li><a href="#story">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#signup">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#products" class="nav-cta">Shop Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-tag">Luxury Body Care · Small Batch · Handcrafted</p>
+    <h1 class="hero-h1">Your skin deserves to <em>glow</em> every single day.</h1>
+    <p class="hero-sub">Handcrafted body butters, sugar scrubs, and fragrant mists made with skin-loving ingredients. Because self-care is never optional.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Shop Best Sellers</a>
+      <a href="#scents" class="btn-outline">Explore Scents</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=900&auto=format&fit=crop" alt="Luxury skincare lifestyle">
+    <div class="hero-badge">
+      <strong>4.9 ★</strong>
+      <span>2,400+ happy customers</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <span><span class="trust-dot"></span>Free Shipping Over $50</span>
+  <span><span class="trust-dot"></span>Cruelty-Free & Vegan</span>
+  <span><span class="trust-dot"></span>Handmade in Small Batches</span>
+  <span><span class="trust-dot"></span>No Harsh Chemicals</span>
+</div>
+
+<!-- BEST SELLERS -->
+<section class="products" id="products">
+  <div class="products-header">
+    <div>
+      <p class="section-tag">Most Loved</p>
+      <h2 class="section-title">Best <em>Sellers</em></h2>
+    </div>
+    <a href="#" class="view-all">View All Products →</a>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=600&auto=format&fit=crop" alt="Body Butter">
+      <div class="product-info">
+        <p class="product-type">Bestseller</p>
+        <h3 class="product-name">Whipped Body Butter</h3>
+        <p class="product-desc">Ultra-rich, melts into skin instantly. 24-hr hydration in every jar.</p>
+        <div class="product-footer">
+          <span class="product-price">$22.00</span>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1598662779094-110c2b1d3a1f?w=600&auto=format&fit=crop" alt="Sugar Scrub">
+      <div class="product-info">
+        <p class="product-type">Fan Favorite</p>
+        <h3 class="product-name">Brown Sugar Scrub</h3>
+        <p class="product-desc">Exfoliates and moisturizes in one step. Leaves skin buttery soft.</p>
+        <div class="product-footer">
+          <span class="product-price">$18.00</span>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1611080541599-8c6dbde6ed28?w=600&auto=format&fit=crop" alt="Body Oil">
+      <div class="product-info">
+        <p class="product-type">New Arrival</p>
+        <h3 class="product-name">Glow Body Oil</h3>
+        <p class="product-desc">Lightweight shimmer oil that absorbs fast. Scent that lingers all day.</p>
+        <div class="product-footer">
+          <span class="product-price">$24.00</span>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1585386959984-a41552231658?w=600&auto=format&fit=crop" alt="Body Mist">
+      <div class="product-info">
+        <p class="product-type">All-Day Scent</p>
+        <h3 class="product-name">Hydrating Body Mist</h3>
+        <p class="product-desc">Not just a fragrance — infused with aloe & vitamin E for skin benefits.</p>
+        <div class="product-footer">
+          <span class="product-price">$16.00</span>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div style="text-align:center; margin-bottom: 0.5rem;">
+    <p class="section-tag">The BrookieGirl Promise</p>
+    <h2 class="section-title">Why You'll <em>Love It</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🌿</div>
+      <h3 class="why-title">Skin-Loving Ingredients</h3>
+      <p class="why-desc">Every product is formulated with butters, oils, and botanicals that nourish — no fillers, no harsh chemicals.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">✦</div>
+      <h3 class="why-title">Handmade in Small Batches</h3>
+      <p class="why-desc">Made by hand, in small quantities, so every jar gets the attention it deserves. Freshness you can feel.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🐇</div>
+      <h3 class="why-title">Cruelty-Free Always</h3>
+      <p class="why-desc">Never tested on animals. Our products are made for you — and with love for every living thing.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💧</div>
+      <h3 class="why-title">Deep, Long-Lasting Hydration</h3>
+      <p class="why-desc">No greasy residue. Just 24-hour moisture that leaves your skin soft, supple, and glowing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCENTS -->
+<section class="scents" id="scents">
+  <div style="text-align:center;">
+    <p class="section-tag">Find Your Signature</p>
+    <h2 class="section-title">Shop by <em>Scent</em></h2>
+    <p style="color: var(--text-mid); font-size: 0.95rem; margin-top: 0.75rem; max-width: 480px; margin-left:auto; margin-right:auto;">Every product comes in your favorite scent family. Mix, match, and layer for a vibe that's totally you.</p>
+  </div>
+  <div class="scent-grid">
+    <div class="scent-card">
+      <span class="scent-emoji">🍓</span>
+      <h3 class="scent-name">Sweet & Fruity</h3>
+      <p class="scent-note">Strawberry · Peach · Watermelon · Mango</p>
+      <span class="scent-tag">Shop Scent →</span>
+    </div>
+    <div class="scent-card">
+      <span class="scent-emoji">🌴</span>
+      <h3 class="scent-name">Tropical Escape</h3>
+      <p class="scent-note">Coconut · Pineapple · Guava · Island Breeze</p>
+      <span class="scent-tag">Shop Scent →</span>
+    </div>
+    <div class="scent-card">
+      <span class="scent-emoji">🌿</span>
+      <h3 class="scent-name">Fresh & Clean</h3>
+      <p class="scent-note">Cotton · Cucumber · Aloe · Linen & Rain</p>
+      <span class="scent-tag">Shop Scent →</span>
+    </div>
+    <div class="scent-card">
+      <span class="scent-emoji">🕯️</span>
+      <h3 class="scent-name">Warm & Cozy</h3>
+      <p class="scent-note">Vanilla · Brown Sugar · Cashmere · Sandalwood</p>
+      <span class="scent-tag">Shop Scent →</span>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND STORY -->
+<section class="story" id="story">
+  <div class="story-image">
+    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=900&auto=format&fit=crop" alt="Brand Story">
+  </div>
+  <div class="story-content">
+    <p class="section-tag">Our Story</p>
+    <div class="story-bar"></div>
+    <h2 class="story-quote">"I made it because nothing else worked for my skin."</h2>
+    <p class="story-text">
+      BrookieGirl started the way most good things do — out of necessity and a little frustration. After years of struggling with sensitive skin that reacted to nearly every body care product on the market, I decided to stop searching and start creating.
+    </p>
+    <p class="story-text">
+      Every formula was tested on myself first — tweaked until it felt like something I'd actually look forward to using. No harsh fragrances. No irritating additives. Just rich, nourishing ingredients that treat your skin the way it deserves.
+    </p>
+    <p class="story-text">
+      This isn't just a skincare brand. It's a love letter to anyone who's ever felt like their skin was too sensitive, too dry, or too overlooked. You deserve luxury that actually works.
+    </p>
+    <span class="story-sig">— Brooke, Founder</span>
+    <div style="margin-top: 1.5rem;">
+      <a href="#products" class="btn-primary">Shop the Collection</a>
+    </div>
+  </div>
+</section>
+
+<!-- BUNDLE -->
+<section class="bundle">
+  <p class="section-tag">Limited Offer</p>
+  <h2 class="section-title">The <em>Self-Care</em> Set</h2>
+  <p style="color: rgba(253,248,243,0.7); margin-top: 0.75rem; font-size:0.95rem;">Everything you need for a full body glow ritual, bundled together.</p>
+  <div class="bundle-items">
+    <div class="bundle-item">Whipped Body Butter</div>
+    <div class="bundle-item">Brown Sugar Scrub</div>
+    <div class="bundle-item">Hydrating Body Mist</div>
+  </div>
+  <div class="bundle-price">$48.00 <span style="font-size:1rem; text-decoration: line-through; opacity: 0.5;">$56.00</span></div>
+  <p class="bundle-save">✦ Save 15% when you bundle ✦</p>
+  <a href="#" class="btn-gold">Shop the Bundle</a>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div style="text-align:center;">
+    <p class="section-tag">Customer Love</p>
+    <h2 class="section-title">What They're <em>Saying</em></h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"My skin has never felt this soft. I literally wake up and my arms still feel moisturized from the night before. The Warm & Cozy scent is everything."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">JM</div>
+        <div>
+          <p class="reviewer-name">Jasmine M.</p>
+          <p class="reviewer-date">Verified Purchase · Body Butter</p>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"I have the most sensitive skin and this is the first body care line that hasn't broken me out. The ingredients are clean and the scents last ALL day."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">TL</div>
+        <div>
+          <p class="reviewer-name">Tara L.</p>
+          <p class="reviewer-date">Verified Purchase · Full Bundle</p>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Feels like a spa day every time I use it. The scrub + butter combo is life-changing. I've already reordered twice and gifted it to my whole friend group."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">KA</div>
+        <div>
+          <p class="reviewer-name">Kezia A.</p>
+          <p class="reviewer-date">Verified Purchase · Sugar Scrub</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div style="text-align:center;">
+    <p class="section-tag">The BrookieGirl Life</p>
+    <h2 class="section-title">As Seen in the <em>Wild</em></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1614159102088-93de64fc7a25?w=700&auto=format&fit=crop" alt="Lifestyle 1">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=500&auto=format&fit=crop" alt="Lifestyle 2">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=500&auto=format&fit=crop" alt="Lifestyle 3">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=400&auto=format&fit=crop" alt="Lifestyle 4">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=500&auto=format&fit=crop" alt="Lifestyle 5">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400&auto=format&fit=crop" alt="Lifestyle 6">
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL SIGNUP -->
+<section class="email-signup" id="signup">
+  <p class="section-tag">Join the Club</p>
+  <h2 class="section-title">Get <em>10% Off</em> Your First Order</h2>
+  <p style="color: var(--text-mid); font-size: 0.95rem; margin-top: 0.75rem;">Join the Glow Club for early access, exclusive drops, and self-care inspo straight to your inbox.</p>
+  <div class="email-form">
+    <input type="email" class="email-input" placeholder="Enter your email address">
+    <a href="#" class="btn-primary">Claim My Discount</a>
+  </div>
+  <p style="color: var(--text-light); font-size: 0.75rem; margin-top: 1rem;">No spam ever. Unsubscribe anytime.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-logo">Brookie<span>Girl</span></span>
+      <p class="footer-tagline">Luxury body care made by hand, for skin that deserves the very best. Small batch. Big love.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#">Body Butters</a>
+      <a href="#">Sugar Scrubs</a>
+      <a href="#">Body Oils</a>
+      <a href="#">Body Mists</a>
+      <a href="#">Bundles</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">Our Story</a>
+      <a href="#">Ingredients</a>
+      <a href="#">Reviews</a>
+      <a href="#">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">FAQ</a>
+      <a href="#">Shipping & Returns</a>
+      <a href="#">Track My Order</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 BrookieGirl. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Service</span>
+  </div>
+</footer>
+
+</body>
+</html>
